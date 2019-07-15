@@ -6,17 +6,14 @@ import com.taobao.diamond.manager.impl.DefaultDiamondManager;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.Resource;
-import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.*;
 import java.util.concurrent.Executor;
 
-@Component
+@Configuration
 public class DiamondProperty extends PropertyPlaceholderConfigurer implements InitializingBean {
 	private long timeOut = 5000;		//超时5秒钟获取一次最新配置
 	private static Properties properties = new Properties();
