@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chenyongxiu.firstproject.dao.borrow.FinancialBorrowDetailMapper" >
+
+  <!-- 删除/批量删除-->
+  <!--int updateLoanByIds(@Param(value = "financialBorrowIds") List<Long> financialBorrowIds);-->
+  <update id="updateLoanByIds">
+    UPDATE
+    t_financial_borrow_detail
+    SET
+    is_delete = 'Y'
+    WHERE
+    financial_borrow_id
+    IN
+    <foreach collection="financialBorrowIds" item="loanId" open="(" close=")" separator=",">
+      #{loanId}
+    </foreach>
+  </update>
+
+  <!--根据easNo更新借款单状态-->
+  <!--Result updateByEasNo(@Param(value = "easNo") String easNo, @Param(value = "status") String status);-->
+  <update id="updateByEasNo">
+      UPDATE
+        t_financial_borrow s
+      SET
+        s.`status` = #{status}
+      WHERE
+	    s.eas_id = #{easId}
+      AND
+        s.is_delete = 'N'
+    </update>
+
+  <!--根据主键，删除(更新)明细-->
+  <!--int updateLoanDetailByIds(@Param(value = "financialBorrowDetailIds") List<Long> financialBorrowDetailIds);-->
+  <update id="updateLoanDetailByIds">
+    UPDATE
+    t_financial_borrow_detail s
+    SET
+    s.is_delete = 'Y'
+    WHERE
+    s.financial_borrow_detail_id
+    IN
+    <foreach collection="financialBorrowDetailIds" item="detailId" open="(" close=")" separator=",">
+      #{detailId}
+    </foreach>
+  </update>
+
+  <select id="selectMydata" resultType="java.util.Map">
+
+      select * from t_receiv_user_bank_info
+
+  </select>
+
+
+</mapper>

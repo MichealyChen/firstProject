@@ -1,0 +1,14 @@
+spring:
+  cache:
+    master: r2
+    database: 0
+    timeout: 6000
+    nodes:
+      - 192.168.1.231:56379
+      - 192.168.1.232:56379
+      - 192.168.1.235:56379
+    max-active: 222
+    min-idle: 333
+    max-idle: 555
+    max-wait: -1
+    maxWaitMillis: 666

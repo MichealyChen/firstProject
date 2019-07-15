@@ -1,0 +1,18 @@
+spring:
+  mydatasource:
+    url: jdbc:mysql://192.168.1.231:3306/yicartrip_nuwa_cbs
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    # 初始化大小，最小，最大
+    initialSize: 5
+    minIdle: 5
+    maxActive: 50
+    # 配置获取连接等待超时的时间
+    maxWait: 60000
+    poolPreparedStatements: true
+    max-evictable-idle-time-millis: 8888888
+    timeBetweenEvictionRunsMillis: 60008
+    kill-when-socket-read-timeout: true
+    time-between-log-stats-millis: 66666

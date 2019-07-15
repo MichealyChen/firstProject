@@ -1,0 +1,22 @@
+server:
+  port: 8091
+
+spring:
+  profiles:
+    include: redis,datasource
+
+
+mybatis:
+  # 映射文件所在路径
+  mapper-locations: classpath:mapper/*/*.xml
+  # pojo类所在包路径
+
+threadpool:
+  core-pool-size: 10
+  max-pool-size: 20
+  queue-capacity: 1000
+  keep-alive-seconds: 300
+
+
+
+
