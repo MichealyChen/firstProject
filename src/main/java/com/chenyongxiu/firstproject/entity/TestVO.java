@@ -16,7 +16,7 @@ import java.util.Date;
  * @author 样例VO
  *
  */
-@Data
+//@Data
 public class TestVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -37,5 +37,24 @@ public class TestVO implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd", timezone ="GMT+8")
 	private LocalDate endDate1;
 
+    public TestVO(Integer date) {
+        System.out.println("construct");
+    }
 
+    public TestVO() {
+
+    }
+
+    @Override
+    public String toString() {
+        return "TestVO{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", startDate1=" + startDate1 +
+                ", endDate1=" + endDate1 +
+                '}';
+    }
 }

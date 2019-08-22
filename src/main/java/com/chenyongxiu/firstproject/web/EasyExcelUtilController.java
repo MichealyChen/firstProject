@@ -2,6 +2,7 @@ package com.chenyongxiu.firstproject.web;
 
 
 import com.chenyongxiu.firstproject.common.utils.exception.ExcelException;
+import com.chenyongxiu.firstproject.entity.DataDictionaryPO;
 import com.chenyongxiu.firstproject.service.ExcelService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -46,11 +47,24 @@ public class EasyExcelUtilController {
     }
 
     @PostMapping("saveExcelData2")
-    public void saveExcelData2(){
+    public Object saveExcelData2(){
+        List<DataDictionaryPO> dataDictionaryPOS = null;
         try {
-            excelService.saveExcelData1();
+            dataDictionaryPOS = excelService.saveExcelData1();
         } catch (ExcelException e) {
             e.printStackTrace();
         }
+        return dataDictionaryPOS;
+    }
+
+    @PostMapping("saveExcelData3")
+    public Object saveExcelData3(){
+        List<DataDictionaryPO> dataDictionaryPOS = null;
+        try {
+            dataDictionaryPOS = excelService.saveExcelData3();
+        } catch (ExcelException e) {
+            e.printStackTrace();
+        }
+        return dataDictionaryPOS;
     }
 }

@@ -1,7 +1,10 @@
 package com.chenyongxiu.firstproject.service;
 
 import com.chenyongxiu.firstproject.common.utils.exception.ExcelException;
+import com.chenyongxiu.firstproject.entity.DataDictionaryPO;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 /**
  * 处理excel数据
@@ -17,5 +20,7 @@ public interface ExcelService {
      * @param excel
      */
     void saveExcelData(MultipartFile excel) throws ExcelException;
-    void saveExcelData1() throws ExcelException;
+    List<DataDictionaryPO> saveExcelData1() throws ExcelException;
+
+    List<DataDictionaryPO> saveExcelData3() throws ExcelException;
 }

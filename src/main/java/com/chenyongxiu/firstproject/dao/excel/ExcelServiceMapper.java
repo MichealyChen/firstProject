@@ -14,5 +14,7 @@ public interface ExcelServiceMapper {
 
     void saveExcelData(List<DataDictionaryPO> list);
 
+    List<DataDictionaryPO> getDataDictionaryPO(int limit);
+
 
 }

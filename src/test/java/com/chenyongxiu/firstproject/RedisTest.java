@@ -19,8 +19,19 @@ public class RedisTest {
 
     @Test
     public void test(){
-        jedis.set("ssss","44444444");
+
+
+        jedis.decr("ssss");
+
         System.out.println(jedis.get("ssss"));
+    }
+
+    @Test
+    public void tesqq(){
+        String ss="52200";
+
+        ss = String.format("%05d", Integer.parseInt(ss));
+        System.out.println(ss);
     }
 
     @Test

@@ -24,7 +24,9 @@
   <delete id="deleteDataDictionary">
     DELETE FROM t_data_dictionary
   </delete>
-
+    <select id="getDataDictionaryPO" resultType="com.chenyongxiu.firstproject.entity.DataDictionaryPO">
+        select * from t_data_dictionary t LIMIT #{limit}
+    </select>
 
 
 </mapper>

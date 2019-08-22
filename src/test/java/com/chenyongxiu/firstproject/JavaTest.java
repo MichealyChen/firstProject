@@ -1,18 +1,35 @@
 package com.chenyongxiu.firstproject;
 
+import com.alibaba.druid.sql.visitor.functions.Char;
+import com.chenyongxiu.firstproject.entity.TestVO;
+import org.apache.commons.codec.DecoderException;
+import org.apache.commons.codec.binary.Hex;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.SerializationUtils;
+import sun.misc.Unsafe;
 
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.URL;
+import java.net.UnknownHostException;
+import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import java.util.*;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import static org.springframework.core.io.support.SpringFactoriesLoader.FACTORIES_RESOURCE_LOCATION;
 
 //
 //@RunWith(SpringRunner.class)
@@ -24,6 +41,8 @@ public class JavaTest {
 
 //    @Resource
 //    private ScheduledExecutorService ScheduledExecutorService;
+
+    final int i = 0;
 
     @Test
     public void dateFermatTest() throws InterruptedException {
@@ -143,8 +162,90 @@ public class JavaTest {
         countDownLatch.await();
     }
 
-    private void outYest(){
-        System.out.println("submit");
+    @Test
+    public void outYest(){
+        Map<String, Object> param =new HashMap<>();
+
+        param.put("qq",555);
+        param.put("q1q","ww");
+        param.put("qqq",null);
+        param.put("q2q",null);
+        Map<String, Object> collect = param.entrySet().stream()
+                .filter(x -> x.getValue() != null)
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        System.out.println(i);
+
+
+    }
+
+    private Enumeration geturl(){
+        Enumeration<URL> resources = null;
+        try {
+            resources = Thread.currentThread().getContextClassLoader().getResources(FACTORIES_RESOURCE_LOCATION);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return resources;
+    }
+
+    @Test
+    public void testConstruct(){
+        Properties p=System.getProperties();//获取当前的系统属性
+        p.list(System.out);//将属性列表输出
+        System.out.print("CPU个数:");//Runtime.getRuntime()获取当前运行时的实例
+        System.out.println(Runtime.getRuntime().availableProcessors());//availableProcessors()获取当前电脑CPU数量
+        System.out.print("虚拟机内存总量:");
+        System.out.println(Runtime.getRuntime().totalMemory());//totalMemory()获取java虚拟机中的内存总量
+        System.out.print("虚拟机空闲内存量:");
+        System.out.println(Runtime.getRuntime().freeMemory());//freeMemory()获取java虚拟机中的空闲内存量
+        System.out.print("虚拟机使用最大内存量:");
+        System.out.println(Runtime.getRuntime().maxMemory());//maxMemory()获取java虚拟机试图使用的最大内存量
+    }
+
+    @Test
+    public void testInetAddress() throws UnknownHostException, DecoderException {
+        InetAddress byName = Inet4Address.getByName("devnuwa.yicartrip.com");
+        String hostAddress = byName.getHostAddress();
+        System.out.println(hostAddress);
+
+        String bytes = Hex.encodeHexString(hostAddress.getBytes());
+        System.out.println(bytes);
+
+    }
+
+    @Test
+    public void testBigDecimal() throws UnknownHostException {
+        String annualRateStr1 = "0.0996";
+        String annualRateStr = annualRateStr1 != null ? annualRateStr1 : "1";
+        BigDecimal annualRate = new BigDecimal(annualRateStr);
+        BigDecimal multiply = annualRate.multiply(new BigDecimal(100));
+
+        String s = multiply.stripTrailingZeros().toPlainString();
+
+        String applyAmount="10000";
+        BigDecimal sss = new BigDecimal(applyAmount).multiply(new BigDecimal("0.06"));
+        System.out.println(sss.stripTrailingZeros().toPlainString());
+
+
+    }
+    private final AtomicInteger connectingCount       = new AtomicInteger();
+    @Test
+    public void testListBigDecimal() throws UnknownHostException {
+
+
+//        IntStream.range(0,6).forEach(x->{
+//             getIn();
+//        });
+        System.out.println(getIn());
+    }
+
+    private int getIn(){
+//        int i = connectingCount.incrementAndGet();
+        int i3 = connectingCount.getAndSet(6);
+        int i4 = connectingCount.getAndSet(2);
+        System.out.println(i3);
+        System.out.println(i4);
+        return 8;
     }
 
 }
