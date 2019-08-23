@@ -95,8 +95,9 @@ public class ExcelServiceImpl implements ExcelService {
     public List<DataDictionaryPO> saveExcelData3() throws ExcelException {
         AtomicInteger n = new AtomicInteger();
 //        ttt( n);
-        rrr2(1000);
+//        rrr2(1000);
 //        sout();
+        new TimerTaskUtil(new Timer()).start();
         return null;
 
     }

@@ -1,5 +1,7 @@
 package com.chenyongxiu.firstproject;
 
+import com.chenyongxiu.firstproject.common.utils.TimerTaskUtil;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Timer;
@@ -15,11 +17,11 @@ public class TimeTest {
 
         AtomicInteger n= new AtomicInteger();
 
-        Timer ti=new Timer();
-        ti.scheduleAtFixedRate(new MyTask(),1000,3000);
+//        Timer ti=new Timer();
+//        ti.scheduleAtFixedRate(new MyTask(),1000,3000);
 //        AtomicInteger n= new AtomicInteger();
-
-        ttt( n);
+        new TimerTaskUtil(new Timer()).start();
+//        ttt( n);
     }
 
     private static void ttt( AtomicInteger n) {
@@ -42,8 +44,6 @@ public class TimeTest {
         }, 2, 2, TimeUnit.SECONDS);
     }
 }
-
-
 
 
 class MyTask extends TimerTask{
