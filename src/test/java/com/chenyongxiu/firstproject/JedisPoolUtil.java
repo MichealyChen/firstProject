@@ -71,8 +71,8 @@ public class JedisPoolUtil {
     @Test
     public  void mainqq(){
         Jedis jedis=getJedis();
-        jedis.set("aa","ww");
-        String aa = jedis.get("aa");
+//        jedis.set("123456","ww");
+        String aa = jedis.get("123456");
         System.out.println(aa);
     }
 }
