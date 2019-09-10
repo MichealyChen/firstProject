@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Slf4j
-public class JedisPoolUtil {
+public class TestJedisPoolUtil {
 
     private static JedisSentinelPool pool = null;
 
@@ -24,11 +24,11 @@ public class JedisPoolUtil {
         // 建立连接池配置参数
         JedisPoolConfig config = new JedisPoolConfig();
         // 设置最大连接数
-        config.setMaxTotal(111);
+        config.setMaxTotal(1113);
         // 设置最大阻塞时间，记住是毫秒数milliseconds
         config.setMaxWaitMillis(55);
         // 设置空间连接
-        config.setMaxIdle(66);
+        config.setMaxIdle(65);
         // jedis实例是否可用
         boolean borrow = true;
         config.setTestOnBorrow(borrow);
@@ -38,9 +38,9 @@ public class JedisPoolUtil {
 
         String masterName = "r2";
         Set<String> sentinels = new HashSet<String>();
-        sentinels.add("192.168.1.231:56379");
-        sentinels.add("192.168.1.232:56379");
-        sentinels.add("192.168.1.235:56379");
+        sentinels.add("192.168.1.51:56379");
+        sentinels.add("192.168.1.215:56379");
+        sentinels.add("192.168.1.238:56379");
         pool = new JedisSentinelPool(masterName, sentinels, config);
     }
 

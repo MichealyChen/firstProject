@@ -3,10 +3,12 @@ package com.chenyongxiu.firstproject.dao.excel;
 
 import com.chenyongxiu.firstproject.entity.DataDictionaryPO;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Mapper
+//@Mapper
+@Repository
 public interface ExcelServiceMapper {
 
 

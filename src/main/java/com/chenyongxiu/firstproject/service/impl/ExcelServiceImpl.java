@@ -77,16 +77,12 @@ public class ExcelServiceImpl implements ExcelService {
     @Override
     public List<DataDictionaryPO> saveExcelData1() throws ExcelException {
 
-        System.out.println(master);
 //        Properties properties = DiamondProperty.getProperties();
 //        String property = properties.getProperty("redis.port2");
 
 //        System.out.println(property);
         List<DataDictionaryPO> dictionaryPO = excelServiceMapper.getDataDictionaryPO(300);
-        DiamondClient instance = DiamondClient.getInstance();
-        boolean b = instance.logEncrypt();
-        System.out.println(b);
-        System.out.println(instance);
+
         return dictionaryPO;
 
     }
