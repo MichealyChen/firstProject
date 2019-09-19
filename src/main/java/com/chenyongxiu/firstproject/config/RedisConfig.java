@@ -66,13 +66,13 @@ public class RedisConfig {
     }
 
 
-    @Bean
-    public RedisTemplate<Object, Object> redisTemplate(
-            RedisConnectionFactory redisConnectionFactory) throws UnknownHostException {
-        RedisTemplate<Object, Object> template = new RedisTemplate<>();
-        template.setConnectionFactory(redisConnectionFactory);
-        template.setKeySerializer(RedisSerializer.string());
-        return template;
-    }
+//    @Bean
+////    public RedisTemplate<Object, Object> redisTemplate(
+////            RedisConnectionFactory redisConnectionFactory) throws UnknownHostException {
+////        RedisTemplate<Object, Object> template = new RedisTemplate<>();
+////        template.setConnectionFactory(redisConnectionFactory);
+////        template.setKeySerializer(RedisSerializer.string());
+////        return template;
+////    }
 
 }

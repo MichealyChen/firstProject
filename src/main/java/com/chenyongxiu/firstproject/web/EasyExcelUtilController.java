@@ -2,6 +2,7 @@ package com.chenyongxiu.firstproject.web;
 
 
 import com.chenyongxiu.firstproject.common.utils.exception.ExcelException;
+import com.chenyongxiu.firstproject.entity.CbsReimburseImpVO;
 import com.chenyongxiu.firstproject.entity.DataDictionaryPO;
 import com.chenyongxiu.firstproject.service.ExcelService;
 
@@ -9,9 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.CollectionUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -66,5 +65,18 @@ public class EasyExcelUtilController {
             e.printStackTrace();
         }
         return dataDictionaryPOS;
+    }
+
+    @RequestMapping(value = "/importDate", method = RequestMethod.POST)
+    public Object importDate(@RequestParam MultipartFile file)  {
+
+        List<CbsReimburseImpVO> cbsReimburseImpVOS = null;
+        try {
+            cbsReimburseImpVOS = excelService.importData(file);
+        } catch (ExcelException e) {
+            e.printStackTrace();
+        }
+
+        return cbsReimburseImpVOS;
     }
 }

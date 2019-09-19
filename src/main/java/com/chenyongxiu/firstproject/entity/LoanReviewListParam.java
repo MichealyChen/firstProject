@@ -16,7 +16,7 @@ public class LoanReviewListParam {
 
     private String applyNo;
 
-    private String status;
+    private String status="55";
 
     private Integer current = 1;
 

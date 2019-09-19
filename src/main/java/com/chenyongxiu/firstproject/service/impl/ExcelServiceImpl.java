@@ -8,6 +8,7 @@ import com.chenyongxiu.firstproject.common.utils.exception.ExcelException;
 import com.chenyongxiu.firstproject.dao.excel.ExcelServiceMapper;
 import com.chenyongxiu.firstproject.diamond.BasePropertyPlaceholderConfigurer;
 import com.chenyongxiu.firstproject.diamond.DiamondClient;
+import com.chenyongxiu.firstproject.entity.CbsReimburseImpVO;
 import com.chenyongxiu.firstproject.entity.DataDictionaryModel;
 import com.chenyongxiu.firstproject.entity.DataDictionaryPO;
 import com.chenyongxiu.firstproject.service.ExcelService;
@@ -72,6 +73,14 @@ public class ExcelServiceImpl implements ExcelService {
         //批量插入excel数据
         excelServiceMapper.saveExcelData(dictionaryPOS);
 
+    }
+
+    @Override
+    public List<CbsReimburseImpVO> importData(MultipartFile excel) throws ExcelException {
+        //读取excel数据
+        List<CbsReimburseImpVO> excelData = ExcelUtil.readExcel(excel, CbsReimburseImpVO.class);
+
+        return excelData;
     }
 
     @Override

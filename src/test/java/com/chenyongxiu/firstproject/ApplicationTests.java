@@ -20,6 +20,7 @@ import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -85,9 +86,9 @@ public class ApplicationTests {
 
     @Test
     public void redisTest242() {
-        String[] st={"s","d","5551"};
-        redisTemplate.opsForValue().set("cyx12",st);
-        Object ssss2 = redisTemplate.opsForValue().get("data_type_01");
+//        redisTemplate.opsForValue().set("cbs_db_importDate","Y",1L,TimeUnit.MILLISECONDS);
+        redisTemplate.opsForValue().set("cbs_db_importDate","Y");
+        Object ssss2 = redisTemplate.opsForValue().get("cbs_db_importDate");
         System.out.println(ssss2);
     }
 
