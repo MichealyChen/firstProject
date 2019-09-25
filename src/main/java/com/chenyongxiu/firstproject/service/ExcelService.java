@@ -22,6 +22,7 @@ public interface ExcelService {
      */
     void saveExcelData(MultipartFile excel) throws ExcelException;
     List<CbsReimburseImpVO> importData(MultipartFile excel) throws ExcelException;
+    List<CbsReimburseImpVO> importData1(MultipartFile excel) throws ExcelException;
 
 
     List<DataDictionaryPO> saveExcelData1() throws ExcelException;

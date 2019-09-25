@@ -15,6 +15,7 @@ import com.chenyongxiu.firstproject.service.ExcelService;
 
 import io.netty.util.internal.MathUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.compress.utils.Lists;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,6 +25,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.lang.reflect.Field;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -76,11 +78,53 @@ public class ExcelServiceImpl implements ExcelService {
     }
 
     @Override
-    public List<CbsReimburseImpVO> importData(MultipartFile excel) throws ExcelException {
+    public List<CbsReimburseImpVO> importData1(MultipartFile excel) throws ExcelException {
         //读取excel数据
         List<CbsReimburseImpVO> excelData = ExcelUtil.readExcel(excel, CbsReimburseImpVO.class);
 
         return excelData;
+    }
+
+    @Override
+    public List<CbsReimburseImpVO> importData(MultipartFile excel) throws ExcelException {
+        //读取excel数据
+        List<CbsReimburseImpVO> excelData = ExcelUtil.readExcel(excel, CbsReimburseImpVO.class);
+
+        List<List<String>> list = excelData.stream().map(x -> {
+            return this.testReflect(x);
+        }).collect(Collectors.toList());
+
+        List<Map<String, String>> mapList = list.stream().map(x -> {
+            return this.convertbean(CbsReimburseImpVO.class, x);
+
+        }).collect(Collectors.toList());
+        List<CbsReimburseImpVO> cbsReimburseImpVOS = BeanUtil.convertBean(mapList, CbsReimburseImpVO.class);
+        log.info("sssssss--{}",BeanUtil.convertBean(mapList,CbsReimburseImpVO.class));
+        return cbsReimburseImpVOS;
+    }
+
+    public <T> Map<String, String> convertbean(Class<T> target, List<String> list) {
+        Field[] declaredFields = target.getDeclaredFields();
+        List<String> collect1 = Arrays.stream(declaredFields).filter(x-> !"serialVersionUID".equals(x.getName())).map(x -> x.getName()).collect(Collectors.toList());
+        Map<String, String> map = new HashMap<>();
+        for (int i = 0; i < collect1.size();i++){
+            map.put(collect1.get(i),list.get(i));
+       }
+        return map;
+    }
+
+    public List<String> testReflect(CbsReimburseImpVO model) {
+        List<String> collect = Arrays.stream(model.getClass().getDeclaredFields()).skip(1).map(x -> {
+            String o = null;
+            try {
+                x.setAccessible(true);
+                o = (String) x.get(model);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+            return o;
+        }).collect(Collectors.toList());
+        return collect;
     }
 
     @Override
@@ -118,20 +162,20 @@ public class ExcelServiceImpl implements ExcelService {
         }
         Timer ti = new Timer();
 
-        System.out.println("wwwww"+tt.get());
+        System.out.println("wwwww" + tt.get());
 
-            ti.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    int num = new Random().nextInt(30) + 1;
-                    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy年年MM月dd日 HH:mm:ss");
-                    System.out.println(Thread.currentThread().getName() + " " + dateTimeFormatter.format(LocalDateTime.now()));
+        ti.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                int num = new Random().nextInt(30) + 1;
+                DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy年年MM月dd日 HH:mm:ss");
+                System.out.println(Thread.currentThread().getName() + " " + dateTimeFormatter.format(LocalDateTime.now()));
 
-                    if (num > 5) {
-                        rrr2(3000);
-                    }
+                if (num > 5) {
+                    rrr2(3000);
                 }
-            }, tt.get()*n);
+            }
+        }, tt.get() * n);
 
     }
 

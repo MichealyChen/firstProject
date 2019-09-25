@@ -42,4 +42,14 @@ public class GenerateRepaymentPlanTest {
         System.out.println(doHttpForFile);
     }
 
+    @Test
+    public void httpFileTest2() {
+//        String url = "http://testnuwa.yicartrip.com/api/cbs/zyLeaseback/loanReviewList";
+        String url = "http://localhost:8091/easyExcelUtil/importDate";
+        String filePath = "C:\\Users\\Administrator\\Desktop\\yy.xlsx";
+
+        Object doHttpForFile = RestTemplateTest.doHttpForFile(url, filePath);
+        System.out.println(doHttpForFile);
+    }
+
 }

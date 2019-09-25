@@ -51,11 +51,11 @@ public class CbsReimburseImpVO extends BaseRowModel implements Serializable {
 
     // 报销金额
     @ExcelProperty(index = 7 ,value = "报销金额")
-    private BigDecimal reimburseAmount;
+    private String reimburseAmount;
 
     // 报销审批金额
     @ExcelProperty(index = 8 ,value = "报销审批金额")
-    private BigDecimal reimburseAuditAmount;
+    private String reimburseAuditAmount;
 
     // 用途(备注)
     @ExcelProperty(index = 9 ,value = "用途(备注)")

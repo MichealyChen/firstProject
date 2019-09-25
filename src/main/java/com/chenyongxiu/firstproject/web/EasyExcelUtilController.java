@@ -1,6 +1,7 @@
 package com.chenyongxiu.firstproject.web;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.chenyongxiu.firstproject.common.utils.exception.ExcelException;
 import com.chenyongxiu.firstproject.entity.CbsReimburseImpVO;
 import com.chenyongxiu.firstproject.entity.DataDictionaryPO;
@@ -53,7 +54,7 @@ public class EasyExcelUtilController {
         } catch (ExcelException e) {
             e.printStackTrace();
         }
-        return dataDictionaryPOS;
+        return JSONObject.toJSONString(dataDictionaryPOS);
     }
 
     @PostMapping("saveExcelData3")
@@ -64,7 +65,7 @@ public class EasyExcelUtilController {
         } catch (ExcelException e) {
             e.printStackTrace();
         }
-        return dataDictionaryPOS;
+        return JSONObject.toJSONString(dataDictionaryPOS);
     }
 
     @RequestMapping(value = "/importDate", method = RequestMethod.POST)

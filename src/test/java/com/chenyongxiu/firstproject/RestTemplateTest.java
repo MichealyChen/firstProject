@@ -69,6 +69,14 @@ public class RestTemplateTest {
         System.out.println(s);
     }
 
+    @Test
+    public void mediaTypeTest() {
+
+        //headers
+
+        System.out.println(MediaType.APPLICATION_FORM_URLENCODED.toString());
+    }
+
 
     public static String doFormHttp(String url,  MultiValueMap<String, String> body) {
 
